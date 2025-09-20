@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          token: ${{ secrets.UPDATE_TEMPLATE_SSH_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: pnpm/action-setup@v4
 
@@ -34,5 +34,5 @@ jobs:
           publish: pnpm run release
           version: pnpm run version
         env:
-          GITHUB_TOKEN: ${{ secrets.UPDATE_TEMPLATE_SSH_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
