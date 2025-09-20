@@ -1,0 +1,73 @@
+---
+title: Include
+description: Reuse content from other files.
+---
+
+## Usage
+
+### Markdown
+
+To display content from another Markdown/MDX file, specify its path relative to the file itself in the `<include>` tag.
+
+```mdx title="page.mdx"
+<include>./another.mdx</include>
+```
+
+<Callout>
+  For Markdown files, you don't need to escape for MDX syntax but note that
+  you'll need `rehypeRaw` for HTML comments & content.
+</Callout>
+
+### CodeBlock
+
+For other types of files, it will become a codeblock:
+
+```mdx title="page.mdx"
+<include>./script.ts</include>
+
+<include lang="md" meta='title="lib.md"'>
+  page.md
+</include>
+```
+
+### `cwd`
+
+Resolve relative paths from cwd instead of the Markdown file:
+
+```mdx
+<include cwd lang="tsx" meta='title="lib.ts"'>
+  ./script.ts
+</include>
+```
+
+### Section
+
+For Markdown files, you can include a section of it:
+
+```mdx title="a.mdx"
+## Hello World
+
+<section id="test">This is included</section>
+
+This is not included.
+```
+
+```mdx title="b.mdx"
+<include>a.mdx#test</include>
+```
+
+Or with heading id:
+
+```mdx title="a.mdx"
+## Included Section
+
+I'm here!
+
+## Not Included
+
+Some random text.
+```
+
+```mdx title="b.mdx"
+<include>a.mdx#included-section</include>
+```

@@ -1,0 +1,156 @@
+---
+title: Docs Layout
+description: The layout of documentation
+---
+
+<Customisation />
+
+The layout of documentation pages, it includes a sidebar and mobile-only navbar.
+
+## Usage
+
+Pass your page tree to the component.
+
+```tsx title="layout.tsx"
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { baseOptions } from '@/lib/layout.shared';
+import type { ReactNode } from 'react';
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <DocsLayout {...baseOptions()} tree={tree}>
+      {children}
+    </DocsLayout>
+  );
+}
+```
+
+<AutoTypeTable
+  path="./content/docs/ui/props.ts"
+  type="Omit<DocsLayoutProps, 'children' | 'disableThemeSwitch'>"
+/>
+
+## Sidebar
+
+```tsx title="layout.tsx"
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+
+<DocsLayout
+  sidebar={{
+    enabled: true,
+    // replace the default sidebar
+    // component:
+  }}
+/>;
+```
+
+> See [Sidebar Links](/docs/ui/navigation/sidebar) for customising sidebar items.
+
+<AutoTypeTable path="./content/docs/ui/props.ts" name="SidebarProps" />
+
+## Nav
+
+A mobile-only navbar, the `nav` prop is also reusable on other Fumadocs layouts.
+
+<div className='max-w-[460px] mx-auto'>
+
+![Docs Nav](/docs/docs-nav.png)
+
+</div>
+
+```tsx
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { baseOptions } from '@/lib/layout.shared';
+import type { ReactNode } from 'react';
+
+export default function Layout({ children }: { children: ReactNode }) {
+  const base = baseOptions();
+
+  return (
+    <DocsLayout
+      {...base}
+      nav={{
+        ...base.nav,
+        // override
+      }}
+    >
+      {children}
+    </DocsLayout>
+  );
+}
+```
+
+<AutoTypeTable
+  path="./content/docs/ui/props.ts"
+  type="Omit<NavbarProps, 'children'>"
+/>
+
+### Transparent Mode
+
+To make the navbar background transparent, you can configure transparent mode.
+
+```tsx
+import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+
+export const baseOptions: BaseLayoutProps = {
+  nav: {
+    transparentMode: 'top',
+  },
+};
+```
+
+| Mode     | Description                              |
+| -------- | ---------------------------------------- |
+| `always` | Always use a transparent background      |
+| `top`    | When at the top of page                  |
+| `none`   | Disable transparent background (default) |
+
+### Replace Navbar
+
+To replace the navbar in Docs Layout, set `nav.component` to your own component.
+
+```tsx title="layout.tsx"
+import { baseOptions } from '@/lib/layout.shared';
+import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
+import type { ReactNode } from 'react';
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <DocsLayout
+      {...baseOptions()}
+      nav={{
+        component: <CustomNavbar />,
+      }}
+    >
+      {children}
+    </DocsLayout>
+  );
+}
+```
+
+Fumadocs uses **CSS Variables** to share the size of layout components, and fit each layout component into appropriate position.
+
+You need to override `--fd-nav-height` to the exact height of your custom navbar, this can be done with a CSS stylesheet (e.g. in `global.css`):
+
+```css
+:root {
+  --fd-nav-height: 80px !important;
+}
+```
+
+## Advanced
+
+### Disable Prefetching
+
+By default, it uses the `<Link />` component of your React framework with prefetch enabled.
+
+On Vercel, prefetch requests may cause a higher usage of serverless functions and Data Cache.
+It can also hit the limits of some other hosting platforms.
+
+You can disable prefetching to reduce the amount of prefetch requests.
+
+```tsx
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+
+<DocsLayout sidebar={{ prefetch: false }} />;
+```

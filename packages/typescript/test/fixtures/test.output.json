@@ -1,0 +1,125 @@
+[
+  {
+    "name": "Test1",
+    "description": "",
+    "entries": [
+      {
+        "name": "name",
+        "description": "",
+        "tags": [],
+        "type": "string",
+        "simplifiedType": "string",
+        "required": true,
+        "deprecated": false
+      },
+      {
+        "name": "age",
+        "description": "",
+        "tags": [
+          {
+            "name": "defaultValue",
+            "text": "4"
+          }
+        ],
+        "type": "number | undefined",
+        "simplifiedType": "number",
+        "required": false,
+        "deprecated": false
+      }
+    ]
+  },
+  {
+    "name": "Test2",
+    "description": "",
+    "entries": [
+      {
+        "name": "name",
+        "description": "",
+        "tags": [],
+        "type": "string",
+        "simplifiedType": "string",
+        "required": true,
+        "deprecated": false
+      },
+      {
+        "name": "age",
+        "description": "",
+        "tags": [
+          {
+            "name": "defaultValue",
+            "text": "4"
+          }
+        ],
+        "type": "number | undefined",
+        "simplifiedType": "number",
+        "required": false,
+        "deprecated": false
+      },
+      {
+        "name": "generic",
+        "description": "",
+        "tags": [],
+        "type": "GenericType<string, string, string>",
+        "simplifiedType": "object",
+        "required": true,
+        "deprecated": false
+      }
+    ]
+  },
+  {
+    "name": "Test3",
+    "description": "Player in the room",
+    "entries": [
+      {
+        "name": "name",
+        "description": "The name of player",
+        "tags": [
+          {
+            "name": "see",
+            "text": "https://fumadocs.vercel.app"
+          },
+          {
+            "name": "defaultValue",
+            "text": "Henry"
+          }
+        ],
+        "type": "string",
+        "simplifiedType": "string",
+        "required": true,
+        "deprecated": false
+      },
+      {
+        "name": "age",
+        "description": "",
+        "tags": [
+          {
+            "name": "example",
+            "text": "```js\nconsole.log(\"Hello World\")\n```"
+          },
+          {
+            "name": "remarks",
+            "text": "`timestamp`\nReturned by API"
+          }
+        ],
+        "type": "timestamp",
+        "simplifiedType": "number",
+        "required": true,
+        "deprecated": false
+      },
+      {
+        "name": "privateValue",
+        "description": "",
+        "tags": [
+          {
+            "name": "internal",
+            "text": ""
+          }
+        ],
+        "type": "string",
+        "simplifiedType": "string",
+        "required": true,
+        "deprecated": false
+      }
+    ]
+  }
+]
