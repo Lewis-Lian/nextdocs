@@ -1,8 +1,7 @@
-import type { SortedResult } from '@/server';
 import type { ClientSearchParams, OramaClient } from '@oramacloud/client';
 import { removeUndefined } from '@/utils/remove-undefined';
 import type { OramaIndex } from '@/search/orama-cloud';
-import { createContentHighlighter } from '@/search/shared';
+import { createContentHighlighter, type SortedResult } from '@/search';
 
 interface CrawlerIndex {
   path: string;
@@ -109,6 +108,7 @@ export async function searchDocs(
           id: doc.page_id,
           type: 'page',
           content: doc.title,
+          breadcrumbs: doc.breadcrumbs,
           contentWithHighlights: highlighter.highlight(doc.title),
           url: doc.url,
         });

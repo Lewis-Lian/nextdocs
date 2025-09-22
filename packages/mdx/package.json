@@ -1,6 +1,6 @@
 {
   "name": "fumadocs-mdx",
-  "version": "11.10.1",
+  "version": "12.0.0",
   "description": "The built-in source for Fumadocs",
   "keywords": [
     "NextJs",
@@ -17,11 +17,6 @@
       "import": "./dist/config/index.js",
       "types": "./dist/config/index.d.ts",
       "require": "./dist/config/index.cjs"
-    },
-    "./config/zod-3": {
-      "import": "./dist/config/zod-3.js",
-      "types": "./dist/config/zod-3.d.ts",
-      "require": "./dist/config/zod-3.cjs"
     },
     "./next": {
       "import": "./dist/next/index.js",
@@ -77,6 +72,7 @@
     "estree-util-value-to-estree": "^3.4.0",
     "js-yaml": "^4.1.0",
     "lru-cache": "^11.2.1",
+    "mdast-util-to-markdown": "^2.1.2",
     "picocolors": "^1.1.1",
     "remark-mdx": "^3.1.1",
     "remark-parse": "^11.0.0",

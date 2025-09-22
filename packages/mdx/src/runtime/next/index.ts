@@ -4,40 +4,43 @@ import {
   type PageData,
   type Source,
 } from 'fumadocs-core/source';
-import type { BaseCollectionEntry, FileInfo, Runtime } from './types';
-import fs from 'node:fs';
-
-const cache = new Map<string, string>();
+import type { DocOut, MetaOut, Runtime } from './types';
+import type { CompiledMDXProperties } from '@/mdx/build-mdx';
+import * as fs from 'node:fs/promises';
+import { type FileInfo, missingProcessedMarkdown } from '@/runtime/shared';
 
 export const _runtime: Runtime = {
   doc(files) {
     return files.map((file) => {
-      const { default: body, frontmatter, ...exports } = file.data;
+      const data = file.data as unknown as CompiledMDXProperties;
+      const filePath = file.info.fullPath;
 
       return {
-        body,
-        ...exports,
-        ...(frontmatter as object),
-        _file: file.info,
-        _exports: file.data,
-        get content() {
-          const path = (this as { _file: FileInfo })._file.absolutePath;
-          const cached = cache.get(path);
-          if (cached) return cached;
+        info: file.info,
+        _exports: data as unknown as Record<string, unknown>,
+        body: data.default,
+        lastModified: data.lastModified,
+        toc: data.toc,
+        structuredData: data.structuredData,
+        extractedReferences: data.extractedReferences,
+        ...data.frontmatter,
+        async getText(type) {
+          if (type === 'raw') {
+            return (await fs.readFile(filePath)).toString();
+          }
 
-          const content = fs.readFileSync(path).toString();
-          cache.set(path, content);
-          return content;
+          if (typeof data._markdown !== 'string') missingProcessedMarkdown();
+          return data._markdown;
         },
-      };
+      } satisfies DocOut;
     }) as any;
   },
   meta(files) {
     return files.map((file) => {
       return {
+        info: file.info,
         ...file.data,
-        _file: file.info,
-      };
+      } satisfies MetaOut;
     }) as any;
   },
   docs(docs, metas) {
@@ -54,9 +57,13 @@ export const _runtime: Runtime = {
   },
 };
 
+export interface AnyCollectionEntry {
+  info: FileInfo;
+}
+
 export function createMDXSource<
-  Doc extends PageData & BaseCollectionEntry,
-  Meta extends MetaData & BaseCollectionEntry,
+  Doc extends PageData & AnyCollectionEntry,
+  Meta extends MetaData & AnyCollectionEntry,
 >(
   docs: Doc[],
   meta: Meta[] = [],
@@ -74,8 +81,8 @@ export function createMDXSource<
 }
 
 interface ResolveOptions {
-  docs: BaseCollectionEntry[];
-  meta: BaseCollectionEntry[];
+  docs: AnyCollectionEntry[];
+  meta: AnyCollectionEntry[];
 
   rootDir?: string;
 }
@@ -86,8 +93,8 @@ export function resolveFiles({ docs, meta }: ResolveOptions): VirtualFile[] {
   for (const entry of docs) {
     outputs.push({
       type: 'page',
-      absolutePath: entry._file.absolutePath,
-      path: entry._file.path,
+      absolutePath: entry.info.fullPath,
+      path: entry.info.path,
       data: entry,
     });
   }
@@ -95,11 +102,13 @@ export function resolveFiles({ docs, meta }: ResolveOptions): VirtualFile[] {
   for (const entry of meta) {
     outputs.push({
       type: 'meta',
-      absolutePath: entry._file.absolutePath,
-      path: entry._file.path,
+      absolutePath: entry.info.fullPath,
+      path: entry.info.path,
       data: entry,
     });
   }
 
   return outputs;
 }
+
+export type * from './types';
