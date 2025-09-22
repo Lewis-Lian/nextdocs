@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronRight, Hash, Search as SearchIcon } from 'lucide-react';
+import { FileText, Hash, Search as SearchIcon } from 'lucide-react';
 import {
   type ComponentProps,
   createContext,
@@ -21,10 +21,7 @@ import {
   DialogOverlay,
   DialogTitle,
 } from '@radix-ui/react-dialog';
-import type {
-  HighlightedText,
-  ReactSortedResult as BaseResultType,
-} from 'fumadocs-core/search';
+import type { SortedResult } from 'fumadocs-core/server';
 import { cva } from 'class-variance-authority';
 import { useEffectEvent } from 'fumadocs-core/utils/use-effect-event';
 import { useRouter } from 'fumadocs-core/framework';
@@ -32,17 +29,12 @@ import type { SharedProps } from '@/contexts/search';
 import { useOnChange } from 'fumadocs-core/utils/use-on-change';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import { buttonVariants } from '@/components/ui/button';
+import type { HighlightedText } from 'fumadocs-core/search/server';
 
-export type SearchItemType =
-  | (BaseResultType & {
-      external?: boolean;
-    })
-  | {
-      id: string;
-      type: 'action';
-      node: ReactNode;
-      onSelect: () => void;
-    };
+type ReactSortedResult = Omit<SortedResult, 'content'> & {
+  external?: boolean;
+  content: ReactNode;
+};
 
 // needed for backward compatible since some previous guides referenced it
 export type { SharedProps };
@@ -191,7 +183,7 @@ export function SearchDialogContent({
       aria-describedby={undefined}
       {...props}
       className={cn(
-        'fixed left-1/2 top-4 md:top-[calc(50%-250px)] z-50 w-[calc(100%-1rem)] max-w-screen-sm -translate-x-1/2 rounded-xl border bg-fd-popover text-fd-popover-foreground shadow-2xl shadow-black/50 overflow-hidden data-[state=closed]:animate-fd-dialog-out data-[state=open]:animate-fd-dialog-in',
+        'fixed left-1/2 top-4 md:top-[calc(50%-250px)] z-50 w-[calc(100%-1rem)] max-w-screen-sm -translate-x-1/2 rounded-2xl border bg-fd-popover/80 backdrop-blur-xl text-fd-popover-foreground shadow-2xl shadow-black/50 overflow-hidden data-[state=closed]:animate-fd-dialog-out data-[state=open]:animate-fd-dialog-in',
         '*:border-b *:has-[+:last-child[data-empty=true]]:border-b-0 *:data-[empty=true]:border-b-0 *:last:border-b-0',
         props.className,
       )}
@@ -212,7 +204,7 @@ export function SearchDialogList({
   Item = (props) => <SearchDialogListItem {...props} />,
   ...props
 }: Omit<ComponentProps<'div'>, 'children'> & {
-  items: SearchItemType[] | null | undefined;
+  items: ReactSortedResult[] | null | undefined;
   /**
    * Renderer for empty list UI
    */
@@ -220,7 +212,7 @@ export function SearchDialogList({
   /**
    * Renderer for items
    */
-  Item?: (props: { item: SearchItemType; onClick: () => void }) => ReactNode;
+  Item?: (props: { item: ReactSortedResult; onClick: () => void }) => ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<string | null>(() =>
@@ -229,15 +221,9 @@ export function SearchDialogList({
   const { onOpenChange } = useSearch();
   const router = useRouter();
 
-  const onOpen = (item: SearchItemType) => {
-    if (item.type === 'action') {
-      item.onSelect();
-    } else if (item.external) {
-      window.open(item.url, '_blank')?.focus();
-    } else {
-      router.push(item.url);
-    }
-
+  const onOpen = ({ external, url }: ReactSortedResult) => {
+    if (external) window.open(url, '_blank')?.focus();
+    else router.push(url);
     onOpenChange(false);
   };
 
@@ -329,6 +315,14 @@ export function SearchDialogList({
   );
 }
 
+const icons = {
+  text: null,
+  heading: <Hash className="size-4 shrink-0 text-fd-muted-foreground" />,
+  page: (
+    <FileText className="size-6 text-fd-muted-foreground bg-fd-muted border p-0.5 rounded-sm shadow-sm shrink-0" />
+  ),
+};
+
 export function SearchDialogListItem({
   item,
   className,
@@ -337,50 +331,10 @@ export function SearchDialogListItem({
   ...props
 }: ComponentProps<'button'> & {
   renderHighlights?: typeof renderHighlights;
-  item: SearchItemType;
+  item: ReactSortedResult;
 }) {
   const { active: activeId, setActive } = useSearchList();
   const active = item.id === activeId;
-
-  if (item.type === 'action') {
-    children ??= item.node;
-  } else {
-    children ??= (
-      <>
-        <div className="inline-flex items-center text-fd-muted-foreground text-xs empty:hidden">
-          {item.breadcrumbs?.map((item, i) => (
-            <Fragment key={i}>
-              {i > 0 && <ChevronRight className="size-4" />}
-              {item}
-            </Fragment>
-          ))}
-        </div>
-
-        {item.type !== 'page' && (
-          <div
-            role="none"
-            className="absolute start-3 inset-y-0 w-px bg-fd-border"
-          />
-        )}
-        <p
-          className={cn(
-            'min-w-0 truncate',
-            item.type !== 'page' && 'ps-4',
-            item.type === 'page' || item.type === 'heading'
-              ? 'font-medium'
-              : 'text-fd-popover-foreground/80',
-          )}
-        >
-          {item.type === 'heading' && (
-            <Hash className="inline me-1 size-4 text-fd-muted-foreground" />
-          )}
-          {item.contentWithHighlights
-            ? render(item.contentWithHighlights)
-            : item.content}
-        </p>
-      </>
-    );
-  }
 
   return (
     <button
@@ -399,14 +353,33 @@ export function SearchDialogListItem({
       )}
       aria-selected={active}
       className={cn(
-        'relative select-none px-2.5 py-2 text-start text-sm rounded-lg',
+        'relative flex select-none flex-row items-center gap-2 p-2 text-start text-sm rounded-lg',
+        item.type !== 'page' && 'ps-8',
+        item.type === 'page' || item.type === 'heading'
+          ? 'font-medium'
+          : 'text-fd-popover-foreground/80',
         active && 'bg-fd-accent text-fd-accent-foreground',
         className,
       )}
       onPointerMove={() => setActive(item.id)}
       {...props}
     >
-      {children}
+      {children ?? (
+        <>
+          {item.type !== 'page' && (
+            <div
+              role="none"
+              className="absolute start-4.5 inset-y-0 w-px bg-fd-border"
+            />
+          )}
+          {icons[item.type]}
+          <p className="min-w-0 truncate">
+            {item.contentWithHighlights
+              ? render(item.contentWithHighlights)
+              : item.content}
+          </p>
+        </>
+      )}
     </button>
   );
 }
@@ -496,11 +469,11 @@ export function TagsListItem({
   );
 }
 
-function renderHighlights(highlights: HighlightedText<ReactNode>[]): ReactNode {
+function renderHighlights(highlights: HighlightedText[]): ReactNode {
   return highlights.map((node, i) => {
     if (node.styles?.highlight) {
       return (
-        <span key={i} className="text-fd-primary underline">
+        <span key={i} className="text-fd-primary bg-fd-primary/10">
           {node.content}
         </span>
       );

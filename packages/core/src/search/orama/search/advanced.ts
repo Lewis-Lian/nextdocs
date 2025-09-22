@@ -4,7 +4,8 @@ import {
   type advancedSchema,
 } from '@/search/orama/create-db';
 import { removeUndefined } from '@/utils/remove-undefined';
-import { createContentHighlighter, type SortedResult } from '@/search';
+import type { SortedResult } from '@/server';
+import { createContentHighlighter } from '@/search/shared';
 
 export async function searchAdvanced(
   db: Orama<typeof advancedSchema>,
@@ -57,7 +58,6 @@ export async function searchAdvanced(
       id: pageId,
       type: 'page',
       content: page.content,
-      breadcrumbs: page.breadcrumbs,
       contentWithHighlights: highlighter.highlight(page.content),
       url: page.url,
     });
@@ -68,7 +68,6 @@ export async function searchAdvanced(
       list.push({
         id: hit.document.id.toString(),
         content: hit.document.content,
-        breadcrumbs: hit.document.breadcrumbs,
         contentWithHighlights: highlighter.highlight(hit.document.content),
         type: hit.document.type as SortedResult['type'],
         url: hit.document.url,

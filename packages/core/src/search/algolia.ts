@@ -9,7 +9,6 @@ export interface DocumentRecord {
 
   title: string;
   description?: string;
-  breadcrumbs?: string[];
 
   /**
    * URL to the page
@@ -76,7 +75,6 @@ export async function setIndexSettings(
         'content',
         'url',
         'section_id',
-        'breadcrumbs',
       ],
       searchableAttributes: ['title', 'section', 'content'],
       attributesToSnippet: [],
@@ -97,7 +95,6 @@ function toIndex(page: DocumentRecord): BaseIndex[] {
   ): BaseIndex {
     return {
       objectID: `${page._id}-${(id++).toString()}`,
-      breadcrumbs: page.breadcrumbs,
       title: page.title,
       url: page.url,
       page_id: page._id,
@@ -163,8 +160,6 @@ export interface BaseIndex {
    * Heading (anchor) id
    */
   section_id?: string;
-
-  breadcrumbs?: string[];
 
   content: string;
 }

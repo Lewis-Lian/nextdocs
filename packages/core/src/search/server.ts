@@ -17,7 +17,7 @@ import {
 } from '@/search/orama/create-db';
 import { searchSimple } from '@/search/orama/search/simple';
 import { searchAdvanced } from '@/search/orama/search/advanced';
-import type { SortedResult } from '@/search';
+import type { SortedResult } from '@/search/shared';
 
 type SearchType = 'simple' | 'advanced';
 
@@ -101,7 +101,6 @@ export function createSearchAPI<T extends SearchType>(
 export interface Index {
   title: string;
   description?: string;
-  breadcrumbs?: string[];
   content: string;
   url: string;
   keywords?: string;
@@ -134,8 +133,6 @@ export interface AdvancedIndex {
    * @deprecated No longer used
    */
   keywords?: string;
-
-  breadcrumbs?: string[];
 
   /**
    * Required if tag filter is enabled
@@ -184,4 +181,4 @@ export function initAdvancedSearch(options: AdvancedOptions): SearchServer {
 
 export { createFromSource } from './orama/create-from-source';
 export { createI18nSearchAPI } from './orama/create-i18n';
-export * from './index';
+export * from './shared';

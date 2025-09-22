@@ -192,7 +192,7 @@ test('Loader: Without meta.json', () => {
             "type": "folder",
           },
         ],
-        "name": "Docs",
+        "name": "",
       }
     `);
 });
@@ -248,7 +248,7 @@ test('Loader: Rest operator', () => {
             "url": "/1-2",
           },
         ],
-        "name": "Docs",
+        "name": "",
       }
     `);
 });
@@ -417,7 +417,7 @@ test('Loader: No duplicate pages when referencing subfolder items and folder', (
             "type": "folder",
           },
         ],
-        "name": "Docs",
+        "name": "",
       }
     `);
 });

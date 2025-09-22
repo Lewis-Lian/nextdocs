@@ -55,7 +55,6 @@ export interface OramaDocument {
    * Data to be added to each section index
    */
   extra_data?: object;
-  breadcrumbs?: string[];
 }
 
 export interface OramaIndex {
@@ -75,8 +74,6 @@ export interface OramaIndex {
    * Heading content
    */
   section?: string;
-
-  breadcrumbs?: string[];
 
   /**
    * Heading (anchor) id
@@ -132,7 +129,6 @@ function toIndex(page: OramaDocument): OramaIndex[] {
       section,
       section_id: sectionId,
       content,
-      breadcrumbs: page.breadcrumbs,
       ...page.extra_data,
     };
   }

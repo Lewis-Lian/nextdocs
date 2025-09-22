@@ -1,27 +1,18 @@
-import type { ReactNode } from 'react';
-
-export interface SortedResult<Content = string> {
+export interface SortedResult {
   id: string;
   url: string;
   type: 'page' | 'heading' | 'text';
-  content: Content;
-
-  /**
-   * breadcrumbs to be displayed on UI
-   */
-  breadcrumbs?: Content[];
-  contentWithHighlights?: HighlightedText<Content>[];
+  content: string;
+  contentWithHighlights?: HighlightedText[];
 }
 
-export type ReactSortedResult = SortedResult<ReactNode>;
-
-export interface HighlightedText<Content = string> {
+export type HighlightedText = {
   type: 'text';
-  content: Content;
+  content: string;
   styles?: {
     highlight?: boolean;
   };
-}
+};
 
 function escapeRegExp(input: string): string {
   return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

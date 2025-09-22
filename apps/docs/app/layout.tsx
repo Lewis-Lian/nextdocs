@@ -5,9 +5,6 @@ import { Body } from '@/app/layout.client';
 import { Provider } from './provider';
 import type { ReactNode } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { TreeContextProvider } from 'fumadocs-ui/contexts/tree';
-import { source } from '@/lib/source';
-import { NextProvider } from 'fumadocs-core/framework/next';
 
 export const metadata = createMetadata({
   title: {
@@ -43,11 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <Body>
-        <NextProvider>
-          <TreeContextProvider tree={source.pageTree}>
-            <Provider>{children}</Provider>
-          </TreeContextProvider>
-        </NextProvider>
+        <Provider>{children}</Provider>
       </Body>
     </html>
   );

@@ -1,4 +1,4 @@
-import type { SortedResult } from '@/search';
+import { SortedResult } from '@/server';
 import Mixedbread from '@mixedbread/sdk';
 import { VectorStoreSearchResponse } from '@mixedbread/sdk/resources/vector-stores';
 import removeMd from 'remove-markdown';

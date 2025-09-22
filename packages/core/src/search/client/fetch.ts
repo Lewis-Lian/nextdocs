@@ -1,4 +1,4 @@
-import type { SortedResult } from '@/search';
+import type { SortedResult } from '@/server';
 
 export interface FetchOptions {
   /**

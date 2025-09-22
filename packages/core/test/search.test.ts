@@ -57,7 +57,6 @@ something`,
   expect(await api.search('Hello')).toMatchInlineSnapshot(`
     [
       {
-        "breadcrumbs": undefined,
         "content": "Index",
         "contentWithHighlights": [
           {
@@ -70,7 +69,6 @@ something`,
         "url": "/",
       },
       {
-        "breadcrumbs": undefined,
         "content": "Hello World",
         "contentWithHighlights": [
           {
