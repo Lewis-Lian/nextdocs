@@ -13,8 +13,8 @@ const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
 const config: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  // Set basePath and assetPrefix for GitHub Pages
-  ...(isGithubPages && repoName && {
+  // Set basePath and assetPrefix for GitHub Pages only
+  ...(isGithubPages && repoName && repoName !== `${process.env.GITHUB_REPOSITORY?.split('/')[0]}.github.io` && {
     basePath: `/${repoName}`,
     assetPrefix: `/${repoName}`,
   }),
