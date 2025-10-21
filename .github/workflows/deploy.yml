@@ -49,8 +49,11 @@ jobs:
       - name: Build packages
         run: pnpm run build --filter=./packages/*
 
-      - name: Build docs site
+      - name: Build docs
         run: pnpm run build --filter=docs
+        env:
+          GITHUB_PAGES: true
+          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -6,9 +6,18 @@ const withAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+// Check if we're building for GitHub Pages
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
+
 const config: NextConfig = {
   output: 'export',
   trailingSlash: true,
+  // Set basePath and assetPrefix for GitHub Pages
+  ...(isGithubPages && repoName && {
+    basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}`,
+  }),
   reactStrictMode: true,
   logging: {
     fetches: {
