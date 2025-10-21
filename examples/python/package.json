@@ -1,0 +1,31 @@
+{
+  "name": "example-python",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm build:docs && next build",
+    "dev": "next dev --turbo",
+    "start": "next start",
+    "build:docs": "node ./scripts/generate-docs.mjs",
+    "python:generate": "pip3 install ./node_modules/fumadocs-python && fumapy-generate httpx"
+  },
+  "dependencies": {
+    "fumadocs-core": "workspace:*",
+    "fumadocs-mdx": "workspace:*",
+    "fumadocs-python": "workspace:*",
+    "fumadocs-ui": "workspace:*",
+    "next": "15.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "24.6.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "create-fumadocs-app",
+  "version": "15.8.4",
+  "description": "Create a new documentation site with Fumadocs",
+  "keywords": [
+    "NextJs",
+    "next",
+    "react",
+    "Docs"
+  ],
+  "homepage": "https://fumadocs.dev",
+  "repository": "github:fuma-nama/fumadocs",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "type": "module",
+  "bin": "./dist/index.js",
+  "module": "./dist/create-app.js",
+  "types": "./dist/create-app.d.ts",
+  "files": [
+    "template/*",
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf dist",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "postpublish": "echo \"Updating template repo\" && bash ./scripts/update-git-repo.sh",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "commander": "^14.0.1",
+    "picocolors": "^1.1.1",
+    "tinyexec": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.6",
+    "@types/node": "24.6.2",
+    "eslint-config-custom": "workspace:*",
+    "tinyglobby": "^0.2.15",
+    "tsconfig": "workspace:*",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

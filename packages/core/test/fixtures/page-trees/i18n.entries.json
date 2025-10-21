@@ -1,0 +1,90 @@
+[
+  {
+    "language": "cn",
+    "pages": [
+      {
+        "absolutePath": "",
+        "data": {
+          "title": "Hello Chinese",
+        },
+        "file": {
+          "dirname": "",
+          "ext": ".mdx",
+          "flattenedPath": "test.cn",
+          "name": "test.cn",
+          "path": "test.cn.mdx",
+        },
+        "locale": "cn",
+        "path": "test.cn.mdx",
+        "slugs": [
+          "test",
+        ],
+        "url": "/cn/test",
+      },
+      {
+        "absolutePath": "",
+        "data": {
+          "title": "Nested Page Chinese",
+        },
+        "file": {
+          "dirname": "nested",
+          "ext": ".mdx",
+          "flattenedPath": "nested/test.cn",
+          "name": "test.cn",
+          "path": "nested/test.cn.mdx",
+        },
+        "locale": "cn",
+        "path": "nested/test.cn.mdx",
+        "slugs": [
+          "nested",
+          "test",
+        ],
+        "url": "/cn/nested/test",
+      },
+    ],
+  },
+  {
+    "language": "en",
+    "pages": [
+      {
+        "absolutePath": "",
+        "data": {
+          "title": "Hello",
+        },
+        "file": {
+          "dirname": "",
+          "ext": ".mdx",
+          "flattenedPath": "test",
+          "name": "test",
+          "path": "test.mdx",
+        },
+        "locale": "en",
+        "path": "test.mdx",
+        "slugs": [
+          "test",
+        ],
+        "url": "/en/test",
+      },
+      {
+        "absolutePath": "",
+        "data": {
+          "title": "Nested Page",
+        },
+        "file": {
+          "dirname": "nested",
+          "ext": ".mdx",
+          "flattenedPath": "nested/test.en",
+          "name": "test.en",
+          "path": "nested/test.en.mdx",
+        },
+        "locale": "en",
+        "path": "nested/test.en.mdx",
+        "slugs": [
+          "nested",
+          "test",
+        ],
+        "url": "/en/nested/test",
+      },
+    ],
+  },
+]

@@ -1,0 +1,18 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { isMarkdownPreferred, rewritePath } from 'fumadocs-core/negotiation';
+
+// Middleware is disabled for static export
+// const { rewrite: rewriteLLM } = rewritePath('/docs/*path', '/llms.mdx/*path');
+
+export function middleware(request: NextRequest) {
+  // Middleware functionality is disabled for static export
+  // if (isMarkdownPreferred(request)) {
+  //   const result = rewriteLLM(request.nextUrl.pathname);
+
+  //   if (result) {
+  //     return NextResponse.rewrite(new URL(result, request.nextUrl));
+  //   }
+  // }
+
+  return NextResponse.next();
+}
