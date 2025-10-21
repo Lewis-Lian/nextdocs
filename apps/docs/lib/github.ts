@@ -89,7 +89,7 @@ export async function onRateAction(
   }
 
   const result = await response.json();
-  
+
   if (result.type === 'error') {
     throw new Error(result.message);
   }

@@ -5,20 +5,20 @@ body:
   - type: markdown
     attributes:
       value: |
-        Before opening a new issue:
+        在打开新的 issue 之前：
 
-        - do a search of existing issues.
-        - upgrade to the latest versions of Fumadocs.
+        - 请先搜索现有的问题（issues），查看是否已有相同或相似的问题。
+        - 请先升级到 Fumadocs 的最新版本再进行确认。
 
-        If you need help with your own project, you can start a discussion in the [Q&A Section](https://github.com/fuma-nama/fumadocs/discussions/categories/q-a).
+        如果您需要针对自己的项目获取帮助，可以在 [Q&A 区](https://github.com/fuma-nama/fumadocs/discussions/categories/q-a) 发起讨论。
   - type: textarea
     attributes:
       label: To Reproduce
       description: A step-by-step description of how to reproduce the issue, or a link to the reproducible repository.
       placeholder: |
-        1. Start the application in development (next dev)
-        2. Click X
-        3. Y will happen
+        1. 在开发环境启动应用（例如：next dev）
+        2. 点击 X
+        3. 将发生 Y
     validations:
       required: true
   - type: textarea
@@ -34,22 +34,22 @@ body:
       description: Please run `next info` in the root directory of your project and paste the results.
       render: bash
       placeholder: |
-        Operating System:
-          Platform: darwin
-          Arch: arm64
-          Version: Darwin Kernel Version 22.5.0
-        Binaries:
+        操作系统信息：
+          平台: darwin
+          架构: arm64
+          版本: Darwin Kernel Version 22.5.0
+        可执行环境：
           Node: 18.17.1
           npm: 9.5.1
           Yarn: 1.22.19
           pnpm: N/A
-        Relevant Packages:
+        相关包版本：
           next: 13.4.20
           eslint-config-next: 13.4.20
           react: 18.2.0
           react-dom: 18.2.0
           typescript: 5.2.2
-        Next.js Config:
+        Next.js 配置：
           output: N/A
     validations:
       required: true
@@ -58,20 +58,20 @@ body:
       label: Which area(s) are affected? (Select all that apply)
       multiple: true
       options:
-        - 'Not sure'
-        - 'Core'
-        - 'UI'
-        - 'CLI (create-fumadocs-app)'
-        - 'Content Sources (e.g. Fumadocs MDX, Content Collections)'
-        - 'Integrations (e.g OpenAPI, Typescript DocsGen)'
-        - 'TypeScript (built-in types)'
-        - 'Examples'
+        - '不确定'
+        - '核心 (Core)'
+        - '界面 (UI)'
+        - 'CLI（create-fumadocs-app）'
+        - '内容源（例如：Fumadocs MDX、Content Collections）'
+        - '集成（例如：OpenAPI、Typescript DocsGen）'
+        - 'TypeScript（内置类型）'
+        - '示例（Examples）'
     validations:
       required: true
   - type: textarea
     attributes:
       label: Additional context
       description: |
-        Any extra information that might help us investigate.
+        任何有助于我们调查问题的额外信息。
       placeholder: |
-        I tested my reproduction against different canary releases, and the first one that introduced the bug was "11.0.0", since reverting to "10.0.0" works.
+        我在不同的 canary 版本上测试了可复现步骤，导致该问题的第一个版本为 "11.0.0"，回退到 "10.0.0" 则正常。

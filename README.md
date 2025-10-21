@@ -1,24 +1,16 @@
-![banner](./apps/docs/public/banner.png)
+# ![fumadocs](https://socialify.git.ci/Lewis-Lian/fumadocs/image?custom_language=Next.js&font=Inter&language=1&name=1&owner=1&pattern=Signal&theme=Light)
 
-The framework for building documentation websites in any React.js frameworks.
+![](https://img.shields.io/badge/Markdown-000000?style=flat&logo=Markdown&logoColor=ffffff) ![](https://img.shields.io/badge/Node.js-5FA04E?style=flat&logo=Node.js&logoColor=ffffff) ![](https://github.com/antonkomarev/github-profile-views-counter) ![](https://img.shields.io/github/license/Lewis-Lian/fumadocs.svg?logo=github)
 
-**Officially Supported:**
+基于Fumadocs的文档主题制作的文档站存储仓库
 
-- Next.js
-- Vite: Tanstack Start, Waku, React Router
+📘 点击访问: [LewisDocs](https://docs.l615.com/).
 
-📘 Learn More: [Documentation](https://fumadocs.dev).
+## 贡献指南
 
-## Compatibility
-
-All packages are **ESM only**.
-
-## Sticker
-
-![logo](./documents/logo.png)
-
-Welcome to print it out :D
-
-## Contributions
-
-Make sure to read the [Contributing Guide](/.github/contributing.md) before submitting a pull request.
+1. Fork 这个仓库
+2. 创建一个分支
+3. 提交你的修改
+4. 创建一个 Pull Request
+5. 等待合并
+6. 恭喜，你已贡献了代码！

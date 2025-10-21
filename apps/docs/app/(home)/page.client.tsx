@@ -310,15 +310,15 @@ export function PreviewImages() {
   const previews = [
     {
       image: MainImg,
-      name: 'Docs',
+      name: '学习文档',
     },
     {
       image: NotebookImg,
-      name: 'Notebook',
+      name: '知识库',
     },
     {
       image: OpenAPIImg,
-      name: 'OpenAPI',
+      name: '文章博客',
     },
   ];
 

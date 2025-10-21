@@ -14,10 +14,13 @@ const config: NextConfig = {
   output: 'export',
   trailingSlash: true,
   // Set basePath and assetPrefix for GitHub Pages only
-  ...(isGithubPages && repoName && repoName !== `${process.env.GITHUB_REPOSITORY?.split('/')[0]}.github.io` && {
-    basePath: `/${repoName}`,
-    assetPrefix: `/${repoName}`,
-  }),
+  ...(isGithubPages &&
+    repoName &&
+    repoName !==
+      `${process.env.GITHUB_REPOSITORY?.split('/')[0]}.github.io` && {
+      basePath: `/${repoName}`,
+      assetPrefix: `/${repoName}`,
+    }),
   reactStrictMode: true,
   logging: {
     fetches: {

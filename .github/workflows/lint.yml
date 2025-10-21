@@ -4,29 +4,39 @@ on:
   pull_request:
     branches: [main, dev]
 
+# 此工作流用于在 PR 中运行格式化、类型检查和 ESLint 校验，保证提交质量。
+# 仅在 main 和 dev 分支的 PR 上触发。注释为中文说明，不会改变工作流逻辑。
+
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
+      # 检出代码（将仓库代码拉取到 runner）
       - uses: actions/checkout@v5
 
+      # 设置 pnpm 的 action（确保后续命令可以使用 pnpm）
       - uses: pnpm/action-setup@v4
 
+      # 安装指定版本的 Node.js，并启用 pnpm 缓存以加速依赖安装
       - name: Install Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: 'pnpm'
 
+      # 使用锁文件安装依赖，保证可重复的构建
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
 
+      # 运行代码格式检查（Prettier）
       - name: Lint Format
         run: pnpm lint:prettier
 
+      # 构建 packages 以便类型检查，然后执行类型检查（TypeScript）
       - name: Check Types
         run: pnpm build --filter=./packages/* && pnpm i --frozen-lockfile && pnpm types:check
 
+      # 运行 ESLint 全量检查项目代码质量
       - name: Run ESLint
         run: pnpm lint

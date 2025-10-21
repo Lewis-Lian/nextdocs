@@ -66,8 +66,6 @@ export default function Page() {
             <Hero />
             <UwuHero />
           </div>
-          <Feedback />
-          <Introduction />
           <div
             className="relative overflow-hidden border-x border-t px-8 py-16 sm:py-24"
             style={{
@@ -76,17 +74,11 @@ export default function Page() {
             }}
           >
             <h2 className="text-center text-2xl font-semibold sm:text-3xl">
-              Loved by users.
+              下定决心，不怕牺牲，
               <br />
-              Built for developers.
+              排除万难，去争取胜利！
             </h2>
           </div>
-          <Features />
-          <Highlights />
-          <Architecture />
-          <Why />
-          <Contributing />
-          <End />
         </div>
       </main>
     </>
@@ -374,25 +366,25 @@ function Hero() {
       />
       <h1 className="mb-8 text-4xl font-medium md:hidden">Build Your Docs</h1>
       <h1 className="mb-8 max-w-[600px] text-4xl font-medium max-md:hidden">
-        Build excellent documentation
+        欢迎来到
         <br />
-        with less effort
+        Next Docs 文档站点
       </h1>
       <p className="mb-8 text-fd-muted-foreground md:max-w-[80%] md:text-xl">
-        Fumadocs is a beautiful documentation framework for developers,
-        flexible, performant, running on your React framework.
+        这里记录着我在使用电脑过程中遇到的问题和解决方案，
+        希望这些内容能帮助你解决你的问题。
       </p>
       <div className="inline-flex items-center gap-3 max-md:mx-auto">
         <Link
-          href="/docs/ui"
+          href="/docs/sudynotes"
           className={cn(
             buttonVariants({ size: 'lg', className: 'rounded-full' }),
           )}
         >
-          Getting Started
+          立刻开始
         </Link>
         <a
-          href="https://stackblitz.com/~/github.com/fuma-nama/fumadocs-ui-template"
+          href="https://wiki.l615.com/blog/"
           target="_blank"
           rel="noreferrer noopener"
           className={cn(
@@ -403,7 +395,7 @@ function Hero() {
             }),
           )}
         >
-          Open StackBlitz
+          我的博客
         </a>
       </div>
       <PreviewImages />

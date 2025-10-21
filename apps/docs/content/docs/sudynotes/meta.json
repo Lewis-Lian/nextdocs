@@ -1,0 +1,18 @@
+{
+  "title": "学习笔记",
+  "description": "我的个人学习笔记，涵盖编程、技术和其他有趣的主题。",
+  "icon": "Pencil",
+  "root": true,
+  "pages": [
+    "---介绍---",
+    "index",
+    "---语言---",
+    "python",
+    "Java",
+    "---操作系统---",
+    "linux",
+    "windows",
+    "---工具---",
+    "git"
+  ]
+}

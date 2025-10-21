@@ -14,6 +14,7 @@
 ### 2. 自动部署
 
 部署工作流会在以下情况触发：
+
 - 当代码推送到 `main` 分支时
 - 手动触发（通过 GitHub Actions 页面）
 
@@ -38,10 +39,10 @@
 
 ```typescript
 const config: NextConfig = {
-  output: 'export',           // 启用静态导出
-  trailingSlash: true,        // 添加尾部斜杠，确保路由正常
+  output: 'export', // 启用静态导出
+  trailingSlash: true, // 添加尾部斜杠，确保路由正常
   images: {
-    unoptimized: true,        // 禁用图像优化，因为静态导出不支持
+    unoptimized: true, // 禁用图像优化，因为静态导出不支持
   },
   // ... 其他配置
 };
@@ -50,6 +51,7 @@ const config: NextConfig = {
 ### 5. 访问网站
 
 部署成功后，你的网站将在以下地址可用：
+
 ```
 https://<username>.github.io/<repository-name>
 ```
@@ -73,7 +75,7 @@ https://<username>.github.io/<repository-name>
 项目还包含以下工作流：
 
 - **Lint** (`.github/workflows/lint.yml`): 代码风格检查
-- **Test** (`.github/workflows/test.yml`): 运行单元测试  
+- **Test** (`.github/workflows/test.yml`): 运行单元测试
 - **Release** (`.github/workflows/release.yml`): 发布到 NPM
 
 ## 故障排除

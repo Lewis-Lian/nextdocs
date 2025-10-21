@@ -1,10 +1,14 @@
 name: Deploy to GitHub Pages
 
+# 此工作流负责将构建好的静态网站部署到 GitHub Pages。
+# 触发条件包括 push 到 master 分支和手动触发（workflow_dispatch）。
+# 注意：此文件只添加注释，不改变原有步骤或行为。
+
 on:
   # 当推送到 master 分支时触发
   push:
-    branches: [ master ]
-  
+    branches: [master]
+
   # 允许手动触发
   workflow_dispatch:
 
@@ -17,7 +21,7 @@ permissions:
 # 只允许一个并发部署，跳过正在进行的运行和最新排队的运行之间的运行。
 # 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成。
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:

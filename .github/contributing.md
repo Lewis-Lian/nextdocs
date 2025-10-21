@@ -1,40 +1,77 @@
-## Contributing Guide
+## 贡献指南
 
-We greatly appreciate your willingness to contribute to this project!
-Before submitting a pull request, there are some guidelines you should notice.
+非常感谢您愿意为本项目贡献代码！在提交拉取请求（Pull Request）之前，请先阅读并遵守以下指南。
 
-### Guidelines
+### 指南
 
-This project is a monorepo using Turborepo, pnpm and
-[Changesets](https://github.com/changesets/changesets). 
+本项目为 monorepo，使用 Turborepo、pnpm 和 [Changesets](https://github.com/changesets/changesets)。
 
-#### Before Submitting
+#### 提交前
 
-- Check if there's other similar PRs.
-- Format your code with `pnpm run prettier`.
-- Add changesets with `pnpm changeset`, which documents the changes you've made.
-- Run unit tests with `pnpm test` and update snapshots if necessary.
+- 请先检查是否已有类似的 PR。
+- 使用 `pnpm run prettier` 格式化代码。
+- 使用 `pnpm changeset` 添加 changeset 来记录您所做的更改。
+- 使用 `pnpm test` 运行单元测试，如有需要请更新快照。
 
-#### New Feature
+#### 新功能
 
-Before submitting a new feature, make sure to open an issue (Feature Request) with sufficient information and reasons about the new feature.
-After the feature request is approved, you can submit a pull request.
+在提交新功能之前，请先打开一个 issue（Feature Request），说明功能的细节与设计理由。功能请求获得批准后，再提交拉取请求。
 
-#### Bug Fixes
+#### 修复 Bug
 
-Provide a detailed description of the bug (with live demo if possible).
-OR open a bug report and link it in your PR.
+请提供尽可能详细的 bug 描述（如可行，请提供可复现的在线演示）。您也可以先打开一个 bug 报告，并在 PR 中链接该报告。
 
-#### Docs
+#### 文档
 
-Contributing to the docs is relatively easier, make sure to check the typos and grammatical mistakes before submitting. 
+贡献文档相对简单，但请在提交前仔细检查拼写和语法错误。
 
-### New to contributing?
+### 不熟悉贡献流程？
 
-You may start with contributing to the docs,
-it is located in `/apps/docs/content/docs`.
+您可以从贡献文档开始，文档位于 `/apps/docs/content/docs`。
 
-To run the docs site in dev mode,
-build the dependencies with `pnpm run build --filter=./packages/*` and run `pnpm run dev --filter=docs` to start the dev server.
+在开发模式下运行 docs 站点：
+先运行以下命令构建依赖，然后启动开发服务器：
 
-You don't need any extra environment variables to run this project.
+```
+pnpm run build --filter=./packages/*
+pnpm run dev --filter=docs
+```
+
+运行本项目不需要额外的环境变量。
+[## 贡献指南
+
+非常感谢您愿意为本项目做出贡献！在提交拉取请求（Pull Request）之前，请注意以下几点指南。
+
+### 指南
+
+本项目为 monorepo，使用 Turborepo、pnpm 和 [Changesets](https://github.com/changesets/changesets)。
+
+#### 提交前
+
+- 检查是否已有类似的 PR。
+- 使用 `pnpm run prettier` 格式化您的代码。
+- 使用 `pnpm changeset` 添加 changeset 来记录您所做的更改。
+- 使用 `pnpm test` 运行单元测试，并在必要时更新快照。
+
+#### 新功能
+
+在提交新功能之前，请先打开一个 issue（Feature Request），提供足够的信息和新增功能的理由。功能请求获得批准后，您再提交拉取请求。
+
+#### 修复 Bug
+
+请提供对该 bug 的详细描述（如可能，附上可运行的演示）。
+或者先打开一个 bug 报告，并在您的 PR 中链接该报告。
+
+#### 文档
+
+贡献文档相对简单，请在提交前检查拼写和语法错误。
+
+### 新手入门？
+
+您可以从贡献文档开始，文档位于 `/apps/docs/content/docs`。
+
+在开发模式下运行 docs 站点：
+先使用 `pnpm run build --filter=./packages/*` 构建依赖，然后运行 `pnpm run dev --filter=docs` 启动开发服务器。
+
+运行本项目不需要额外的环境变量。
+]

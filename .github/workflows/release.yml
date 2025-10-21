@@ -5,6 +5,9 @@ on:
     branches:
       - dev
 
+# 此工作流用于在 dev 分支的推送时创建发布 PR 或发布到 npm（使用 Changesets）。
+# 环境变量和密钥由 secrets 提供。此处仅为中文注释说明。
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
