@@ -29,8 +29,8 @@ import type { Item, Node } from 'fumadocs-core/page-tree';
 import { useRouter } from 'next/navigation';
 
 const client = new OramaClient({
-  endpoint: 'https://cloud.orama.run/v1/indexes/docs-fk97oe',
-  api_key: 'oPZjdlFbq5BpR54bV5Vj57RYt83Xosk7',
+  endpoint: 'https://cloud.orama.run/v1/indexes/nextdocs-xhuf0j',
+  api_key: 'yBsuZJsNH2ECrn05VqcrK7QbzwtgHJRv',
 });
 
 const items = [

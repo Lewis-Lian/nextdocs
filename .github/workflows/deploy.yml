@@ -58,6 +58,7 @@ jobs:
         env:
           GITHUB_PAGES: true
           GITHUB_REPOSITORY: ${{ github.repository }}
+          ORAMA_PRIVATE_API_KEY: ${{ secrets.ORAMA_PRIVATE_API_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

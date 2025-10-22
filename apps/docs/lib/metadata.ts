@@ -24,7 +24,7 @@ export function createMetadata(override: Metadata): Metadata {
         'application/rss+xml': [
           {
             title: 'Fumadocs Blog',
-            url: 'https://fumadocs.dev/blog/rss.xml',
+            url: 'https://wiki.l615.com/blog/rss.xml',
           },
         ],
       },

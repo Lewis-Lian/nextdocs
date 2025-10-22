@@ -24,16 +24,16 @@ export default function Layout({ children }: LayoutProps<'/'>) {
         {
           type: 'menu',
           on: 'menu',
-          text: 'Documentation',
+          text: '文档笔记',
           items: [
             {
-              text: '立刻开始',
+              text: '指南',
               url: '/docs/sudynotes',
               icon: <Book />,
             },
             {
-              text: 'Components',
-              url: '/docs/ui/components',
+              text: '博客',
+              url: '/blog',
               icon: <ComponentIcon />,
             },
           ],

@@ -14,7 +14,7 @@ export const linkItems: LinkItemType[] = [
   },
   {
     type: 'icon',
-    url: 'https://github.com/Lewis-Lian/nextwiki',
+    url: 'https://github.com/Lewis-Lian/nextdocs',
     text: 'Github',
     icon: (
       <svg role="img" viewBox="0 0 24 24" fill="currentColor">

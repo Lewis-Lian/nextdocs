@@ -4,7 +4,7 @@
 
 基于Fumadocs的文档主题制作的文档站存储仓库
 
-📘 点击访问: [LewisDocs](https://docs.l615.com/).
+📘 点击访问: [LewisDocs](https://wiki.l615.com/).
 
 ## 贡献指南
 
