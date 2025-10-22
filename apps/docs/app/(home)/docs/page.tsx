@@ -35,7 +35,7 @@ export default function DocsPage() {
       </p>
       <div className="mt-4 grid grid-cols-2 gap-4">
         <a
-          href="https://github.com/fuma-nama/fumadocs"
+          href="https://github.com/Lewis-Lian/nextdocs"
           rel="noreferrer noopener"
           className={cn(buttonVariants({ size: 'lg' }))}
         >
