@@ -25,7 +25,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import { cn } from '@/lib/cn';
 import { useTreeContext } from 'fumadocs-ui/contexts/tree';
-import type { Item, Node } from 'fumadocs-core/page-tree';
+import type { PageTree } from 'fumadocs-core/server';
 import { useRouter } from 'next/navigation';
 
 const client = new OramaClient({
@@ -35,7 +35,7 @@ const client = new OramaClient({
 
 const items = [
   {
-    name: 'All',
+    name: '全部',
     value: undefined,
   },
   {
@@ -65,39 +65,47 @@ const items = [
   },
 ];
 
+function searchNodes(
+  matcher: (item: PageTree.Item) => boolean,
+  nodes: PageTree.Node[],
+): PageTree.Item | undefined {
+  for (const node of nodes) {
+    if (node.type === 'folder') {
+      if (node.index && matcher(node.index)) return node.index;
+
+      const result = searchNodes(matcher, node.children);
+      if (result) return result;
+    } else if (node.type === 'page' && matcher(node)) {
+      return node;
+    }
+  }
+}
+
 export default function CustomSearchDialog(props: SharedProps) {
   const [open, setOpen] = useState(false);
   const [tag, setTag] = useState<string | undefined>();
   const { search, setSearch, query } = useDocsSearch({
     type: 'orama-cloud',
+    index: 'crawler',
     client,
     tag,
   });
-  const { full } = useTreeContext();
+  const { root } = useTreeContext();
   const router = useRouter();
-  const searchMap = useMemo(() => {
-    const map = new Map<string, Item>();
-
-    function onNode(node: Node) {
-      if (node.type === 'page' && typeof node.name === 'string') {
-        map.set(node.name.toLowerCase(), node);
-      } else if (node.type === 'folder') {
-        if (node.index) onNode(node.index);
-        for (const item of node.children) onNode(item);
-      }
-    }
-
-    for (const item of full.children) onNode(item);
-    return map;
-  }, [full]);
-  const pageTreeAction = useMemo<SearchItemType | undefined>(() => {
-    if (search.length === 0) return;
+  const pageTreeActions = useMemo(() => {
+    const actions: SearchItemType[] = [];
+    if (search.length === 0) return actions;
 
     const normalized = search.toLowerCase();
-    for (const [k, page] of searchMap) {
-      if (!k.startsWith(normalized)) continue;
+    const result = searchNodes(
+      (item) =>
+        typeof item.name === 'string' &&
+        item.name.toLowerCase().startsWith(normalized),
+      root.children,
+    );
 
-      return {
+    if (result) {
+      actions.push({
         id: 'quick-action',
         type: 'action',
         node: (
@@ -106,15 +114,18 @@ export default function CustomSearchDialog(props: SharedProps) {
             <p>
               跳转至{' '}
               <span className="font-medium text-fd-foreground">
-                {page.name}
+                {result.name}
               </span>
+              页面
             </p>
           </div>
         ),
-        onSelect: () => router.push(page.url),
-      };
+        onSelect: () => router.push(result.url),
+      });
     }
-  }, [router, search, searchMap]);
+
+    return actions;
+  }, [root.children, router, search]);
 
   return (
     <SearchDialog
@@ -132,9 +143,9 @@ export default function CustomSearchDialog(props: SharedProps) {
         </SearchDialogHeader>
         <SearchDialogList
           items={
-            query.data !== 'empty' || pageTreeAction
+            query.data !== 'empty' || pageTreeActions.length > 0
               ? [
-                  ...(pageTreeAction ? [pageTreeAction] : []),
+                  ...pageTreeActions,
                   ...(Array.isArray(query.data) ? query.data : []),
                 ]
               : null
@@ -149,7 +160,7 @@ export default function CustomSearchDialog(props: SharedProps) {
                 className: '-m-1.5 me-auto',
               })}
             >
-              <span className="text-fd-muted-foreground/80 me-2">Filter</span>
+              <span className="text-fd-muted-foreground/80 me-2">筛选</span>
               {items.find((item) => item.value === tag)?.name}
               <ChevronDown className="size-3.5 text-fd-muted-foreground" />
             </PopoverTrigger>
