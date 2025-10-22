@@ -21,7 +21,7 @@ export function NotFound(props: NotFoundProps) {
         <Suspense
           fallback={
             <p className="text-sm text-fd-muted-foreground">
-              Finding Alternatives...
+              正在寻找替代方案...
             </p>
           }
         >
@@ -38,9 +38,9 @@ async function Alternative({ getSuggestions }: NotFoundProps) {
   if (suggestions.length === 0) {
     return (
       <div>
-        <p className="mb-2">No Alternative Found</p>
+        <p className="mb-2">未找到替代方案</p>
         <Link href="/" className={cn(buttonVariants({ variant: 'secondary' }))}>
-          Return to Home
+          返回首页
         </Link>
       </div>
     );

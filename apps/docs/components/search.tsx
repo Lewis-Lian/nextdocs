@@ -39,23 +39,28 @@ const items = [
     value: undefined,
   },
   {
+    name: '学习笔记',
+    description: '仅关于 学习笔记 的结果',
+    value: 'sudynotes',
+  },
+  {
     name: 'Framework',
-    description: 'Only results about Fumadocs UI & guides',
+    description: '仅关于 Fumadocs Framework 的结果',
     value: 'ui',
   },
   {
     name: 'Core',
-    description: 'Only results about headless features',
+    description: '仅关于 Fumadocs Core 的结果',
     value: 'headless',
   },
   {
     name: 'MDX',
-    description: 'Only results about Fumadocs MDX',
+    description: '仅关于 Fumadocs MDX 的结果',
     value: 'mdx',
   },
   {
     name: 'CLI',
-    description: 'Only results about Fumadocs CLI',
+    description: '仅关于 Fumadocs CLI 的结果',
     value: 'cli',
   },
 ];
@@ -99,7 +104,7 @@ export default function CustomSearchDialog(props: SharedProps) {
           <div className="inline-flex items-center gap-2 text-fd-muted-foreground">
             <ArrowRight className="size-4" />
             <p>
-              Jump to{' '}
+              跳转至{' '}
               <span className="font-medium text-fd-foreground">
                 {page.name}
               </span>
@@ -178,7 +183,7 @@ export default function CustomSearchDialog(props: SharedProps) {
             rel="noreferrer noopener"
             className="text-xs text-nowrap text-fd-muted-foreground"
           >
-            Powered by Orama
+            由 Orama 强力驱动
           </a>
         </SearchDialogFooter>
       </SearchDialogContent>

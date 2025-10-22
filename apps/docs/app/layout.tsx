@@ -11,10 +11,10 @@ import { NextProvider } from 'fumadocs-core/framework/next';
 
 export const metadata = createMetadata({
   title: {
-    template: '%s | Fumadocs',
-    default: 'Fumadocs',
+    template: '%s | NextDocs',
+    default: 'NextDocs',
   },
-  description: 'The Next.js framework for building documentation sites',
+  description: '记录和分享个人学习相关的知识和经验。',
   metadataBase: baseUrl,
 });
 

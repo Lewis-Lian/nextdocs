@@ -66,7 +66,7 @@ function SearchAIActions() {
         )}
         onClick={() => setMessages([])}
       >
-        Clear Chat
+        清除对话内容
       </button>
     </>
   );
@@ -94,7 +94,7 @@ function SearchAIInput(props: ComponentProps<'form'>) {
     >
       <Input
         value={input}
-        placeholder={isLoading ? 'AI is answering...' : 'Ask AI'}
+        placeholder={isLoading ? 'AI 正在回答...' : '询问 AI... (Shift + Enter 换行)'}
         autoFocus
         className="p-4"
         disabled={status === 'streaming' || status === 'submitted'}
@@ -120,7 +120,7 @@ function SearchAIInput(props: ComponentProps<'form'>) {
           onClick={stop}
         >
           <Loader2 className="size-4 animate-spin text-fd-muted-foreground" />
-          Abort Answer
+          中止回答
         </button>
       ) : (
         <button
@@ -206,8 +206,8 @@ function Input(props: ComponentProps<'textarea'>) {
 }
 
 const roleName: Record<string, string> = {
-  user: 'you',
-  assistant: 'fumadocs',
+  user: '你',
+  assistant: 'NextDocs AI',
 };
 
 function Message({
@@ -250,7 +250,7 @@ function Message({
               className="block text-xs rounded-lg border p-3 hover:bg-fd-accent hover:text-fd-accent-foreground"
             >
               <p className="font-medium">{item.title}</p>
-              <p className="text-fd-muted-foreground">Reference {item.label}</p>
+              <p className="text-fd-muted-foreground">引用 {item.label}</p>
             </Link>
           ))}
         </div>
@@ -306,7 +306,7 @@ export function AISearchTrigger() {
           >
             <div className="sticky top-0 flex gap-2 items-center py-2 w-full max-w-[600px]">
               <p className="text-xs flex-1 text-fd-muted-foreground">
-                Powered by Inkeep AI
+                由 Inkeep AI 强力驱动
               </p>
               <button
                 aria-label="Close"
@@ -362,7 +362,7 @@ export function AISearchTrigger() {
               onClick={() => setOpen(true)}
             >
               <SearchIcon className="absolute top-1/2 -translate-y-1/2 size-4.5" />
-              Ask AI
+              询问 AI...
             </button>
           </Presence>
           <Presence present={open}>

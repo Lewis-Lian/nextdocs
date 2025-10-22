@@ -8,24 +8,13 @@ import Logo from '@/public/logo.png';
 export const linkItems: LinkItemType[] = [
   {
     icon: <AlbumIcon />,
-    text: 'Blog',
+    text: '博客',
     url: '/blog',
     active: 'nested-url',
   },
   {
-    text: 'Showcase',
-    url: '/showcase',
-    icon: <LayoutTemplate />,
-    active: 'url',
-  },
-  {
-    text: 'Sponsors',
-    url: '/sponsors',
-    icon: <Heart />,
-  },
-  {
     type: 'icon',
-    url: 'https://github.com/fuma-nama/fumadocs',
+    url: 'https://github.com/Lewis-Lian/nextwiki',
     text: 'Github',
     icon: (
       <svg role="img" viewBox="0 0 24 24" fill="currentColor">
@@ -39,11 +28,11 @@ export const linkItems: LinkItemType[] = [
 export const logo = (
   <>
     <Image
-      alt="Fumadocs"
+      alt="NextDocs"
       src={Logo}
       sizes="100px"
       className="hidden w-20 md:w-24 [.uwu_&]:block"
-      aria-label="Fumadocs"
+      aria-label="NextDocs"
     />
 
     <FumadocsIcon className="size-5 [.uwu_&]:hidden" fill="currentColor" />
@@ -57,7 +46,7 @@ export function baseOptions(): BaseLayoutProps {
         <>
           {logo}
           <span className="font-medium [.uwu_&]:hidden [header_&]:text-[15px]">
-            Fumadocs
+            NextDocs
           </span>
         </>
       ),

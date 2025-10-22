@@ -20,7 +20,7 @@ export async function buildRegistry() {
     }),
     writeShadcnRegistry(all, {
       dir: 'public/r',
-      baseUrl: 'https://fumadocs.dev',
+      baseUrl: 'https://wiki.l615.com/',
     }),
   ]);
 }

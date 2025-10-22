@@ -6,7 +6,7 @@ export async function updateSearchIndexes(): Promise<void> {
   const apiKey = process.env.ORAMA_PRIVATE_API_KEY;
 
   if (!apiKey) {
-    console.log('no api key for Orama found, skipping');
+    console.log('未找到 Orama 的 API 密钥，正在跳过搜索索引更新。');
     return;
   }
 

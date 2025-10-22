@@ -110,7 +110,7 @@ export function Feedback() {
       className="border-y py-3"
     >
       <div className="flex flex-row items-center gap-2">
-        <p className="text-sm font-medium pe-2">How is this guide?</p>
+        <p className="text-sm font-medium pe-2">这篇文章怎么样？</p>
         <button
           disabled={previous !== null}
           className={cn(
@@ -123,7 +123,7 @@ export function Feedback() {
           }}
         >
           <ThumbsUp />
-          Good
+          不错
         </button>
         <button
           disabled={previous !== null}
@@ -137,13 +137,13 @@ export function Feedback() {
           }}
         >
           <ThumbsDown />
-          Bad
+          糟糕
         </button>
       </div>
       <CollapsibleContent className="mt-3">
         {previous ? (
           <div className="px-3 py-6 flex flex-col items-center gap-3 bg-fd-card text-fd-muted-foreground text-sm text-center rounded-xl">
-            <p>Thank you for your feedback!</p>
+            <p>感谢您的反馈！</p>
             <div className="flex flex-row items-center gap-2">
               <a
                 href={previous.response?.githubUrl}
@@ -156,7 +156,7 @@ export function Feedback() {
                   'text-xs',
                 )}
               >
-                View on GitHub
+                查看 GitHub
               </a>
 
               <button
@@ -171,7 +171,7 @@ export function Feedback() {
                   setPrevious(null);
                 }}
               >
-                Submit Again
+                再次提交
               </button>
             </div>
           </div>
@@ -183,7 +183,7 @@ export function Feedback() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="border rounded-lg bg-fd-secondary text-fd-secondary-foreground p-3 resize-none focus-visible:outline-none placeholder:text-fd-muted-foreground"
-              placeholder="Leave your feedback..."
+              placeholder="留下您的反馈..."
               onKeyDown={(e) => {
                 if (!e.shiftKey && e.key === 'Enter') {
                   submit(e);
@@ -195,7 +195,7 @@ export function Feedback() {
               className={cn(buttonVariants({ color: 'outline' }), 'w-fit px-3')}
               disabled={isPending}
             >
-              Submit
+              提交
             </button>
           </form>
         )}

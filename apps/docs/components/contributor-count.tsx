@@ -54,7 +54,7 @@ export default async function ContributorCounter({
         ) : null}
       </div>
       <div className="text-center text-sm text-fd-muted-foreground">
-        Some of our best contributors.
+        我们一些最优秀的贡献者。 感谢所有为这个项目做出贡献的人！
       </div>
     </div>
   );
