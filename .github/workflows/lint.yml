@@ -1,11 +1,11 @@
 name: Lint
 
+# 此工作流用于在 PR 中运行格式化、类型检查和 ESLint 校验，保证提交质量。
+# 仅在 main 和 dev 分支的 PR 上触发。注释为中文说明，不会改变工作流逻辑。
+
 on:
   pull_request:
     branches: [main, dev]
-
-# 此工作流用于在 PR 中运行格式化、类型检查和 ESLint 校验，保证提交质量。
-# 仅在 main 和 dev 分支的 PR 上触发。注释为中文说明，不会改变工作流逻辑。
 
 jobs:
   lint:
