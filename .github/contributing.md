@@ -74,4 +74,3 @@ pnpm run dev --filter=docs
 先使用 `pnpm run build --filter=./packages/*` 构建依赖，然后运行 `pnpm run dev --filter=docs` 启动开发服务器。
 
 运行本项目不需要额外的环境变量。
-]
