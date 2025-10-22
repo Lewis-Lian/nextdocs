@@ -94,7 +94,9 @@ function SearchAIInput(props: ComponentProps<'form'>) {
     >
       <Input
         value={input}
-        placeholder={isLoading ? 'AI 正在回答...' : '询问 AI... (Shift + Enter 换行)'}
+        placeholder={
+          isLoading ? 'AI 正在回答...' : '询问 AI... (Shift + Enter 换行)'
+        }
         autoFocus
         className="p-4"
         disabled={status === 'streaming' || status === 'submitted'}

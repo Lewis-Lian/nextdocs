@@ -3,17 +3,15 @@ title: Windows版Git安装教程
 icon: Album
 ---
 
-
 ## git的下载
 
-* [git-scm](https://https://git-scm.com/)
-* [git for windows](https://gitforwindows.org/)
-* [阿里镜像](https://registry.npmmirror.com/binary.html?path=git-for-windows/)
-
+- [git-scm](https://https://git-scm.com/)
+- [git for windows](https://gitforwindows.org/)
+- [阿里镜像](https://registry.npmmirror.com/binary.html?path=git-for-windows/)
 
 <Callout title="git-scm是git的官方地址">
-git for windows里只有windows系统的安装包
-阿里镜像直接Ctrl+F 搜索最新版本前缀即可,如2.48.1
+  git for windows里只有windows系统的安装包 阿里镜像直接Ctrl+F
+  搜索最新版本前缀即可,如2.48.1
 </Callout>
 
 ## git的安装
@@ -72,12 +70,12 @@ git for windows里只有windows系统的安装包
 
 ![调整你的 path 环境变量](assets/20250218_165603_8.png)
 
-<Callout title="Use Git from Git Bash only"> 
-
+<Callout title="Use Git from Git Bash only">
 
 This is the most cautious choice as your PATH will not be modified at all. You w only be able to use the Git command line tools from Git Bash.
 
 仅从 Git Bash 使用 Git .这是最谨慎的选择,因为您的 PATH 根本不会被修改。您将只能使用 Git Bash 中的 Git 命令行工具。
+
 </Callout>
 
 <Callout title="Git from the command line and also from 3rd-party software">
@@ -87,6 +85,7 @@ This is the most cautious choice as your PATH will not be modified at all. You w
 (推荐) 此选项将添加一些最小的 Git 包装程序,以避免将环境变量中的可选的 Unix 工具混淆。
 
 您将能够从 Git Bash、命令提示符和 Windows PowerShell 以及任何在 PATH 中查找 Git 的第三方软件中使用 Git。
+
 </Callout>
 
 <Callout title="Use Git and optional Unix tools from the Command Prompt">
@@ -96,6 +95,7 @@ Both Git and the optional Unix tools will be added to your PATH. Warning: This w
 使用命令提示符中的 Git 和可选的 Unix 工具 Git 和可选的 Unix 工具都将添加到您的 PATH 中。
 
 警告：这将覆盖 Windows 工具,例如 "find" and "sort". 仅在了解其含义后使用此选项。
+
 </Callout>
 
 ### 选择 SSH 执行文件
@@ -112,6 +112,7 @@ This uses ssh. exe that comes with Git.
 使用捆绑的 OpenSSH
 
 这使用的 ssh.exe 是 Git 自带的
+
 </Callout>
 
 <Callout title="Use external OpenSSH">
@@ -134,7 +135,6 @@ Git 不会安装自己的 OpenSSH(和相关)二进制文件,而是使用在环�
 
 ![](assets/20250219_081947_10.png)
 
-
 <Callout title="翻译如下：">
 **Use the OpenSSL library**
 
@@ -153,6 +153,7 @@ This option also allows you to use your company's internal Root CA certificates 
 
 服务器证书将使用 Windows 证书存储进行验证。
 此选项还允许您使用公司内部分发的内部根 CA 证书,例如通过 Active Directory 域服务。
+
 </Callout>
 
 这两种选项有什么区别呢？
@@ -181,7 +182,7 @@ Git 签出文本文件时,会将 LF 转换为 CRLF。
 
 **Checkout as-is, commit Unix-style line endings **
 
-Git will not perform any conversion when checking out text files. 
+Git will not perform any conversion when checking out text files.
 When committing text files, CRLF will be converted to LF. For cross-platform projects, this is the recommended setting on Unix("core.autocrif" is set to "input").
 
 **按原样签出,提交 Unix 样式的行结尾**
@@ -191,7 +192,7 @@ Git 在签出文本文件时不会执行任何转换。提交文本文件时,CRL
 
 **Checkout as-is, commit as-is**
 
-Git will not perform any conversions when checking out or committing text files. 
+Git will not perform any conversions when checking out or committing text files.
 Choosing this option is not recommended for cross-platform projects("core. autocrif"is set to "false").
 
 按原样签出,按原样提交
@@ -208,13 +209,17 @@ Git 在签出或提交文本文件时不会执行任何转换。
 
 - 按原样签出,按原样提交。
 
-
 那 Windows 样式和 Unix 样式到底有什么区别呢？
 
 引用 《[GitHub入门与实践](https://book.douban.com/subject/26462816/)》 第 50 页内容
+
 <Callout>
-GitHub 中公开的代码大部分都是以 Mac 或 Linux 中的 LF(Line Feed)换行。然而,由于 Windows 中是以 CRLF(Carriage Return+ Line Feed)换行的,所以在非对应的编辑器中将不能正常显示。
-Git 可以通过设置自动转换这些换行符。使用 Windows 环境的各位,请选择推荐的 “Checkout Windows-style,commit Unix-style line endings” 选项。换行符在签出时会自动转换为 CRLF,在提交时则会自动转换为 LF .
+  GitHub 中公开的代码大部分都是以 Mac 或 Linux 中的 LF(Line Feed)换行。然而,由于
+  Windows 中是以 CRLF(Carriage Return+ Line
+  Feed)换行的,所以在非对应的编辑器中将不能正常显示。 Git
+  可以通过设置自动转换这些换行符。使用 Windows 环境的各位,请选择推荐的 “Checkout
+  Windows-style,commit Unix-style line endings” 选项。换行符在签出时会自动转换为
+  CRLF,在提交时则会自动转换为 LF .
 </Callout>
 
 上面说 Mac 、Linux、Unix 的 Line Feed ,翻译过来就是换行符,用 “\n” 表示,换行符 “\n” 的 ASCII 值为10；
@@ -254,6 +259,7 @@ window was not freely resizable and it only allowed rectangular text selections.
 Git 将使用 Windows 的默认控制台窗口("cmd.exe"),该窗口可与 Win32 控制台程序(例如交互式Python 或
 node.js)一起使用,但默认回滚非常有限,需要将其配置为使用 Unicode 字体才能正确显示非 ASCII 字符,并且在
 Windows 10 之前,其窗口不可随意调整大小,并且仅允许选择矩形文本。
+
 </Callout>
 
 建议选择第一种,MinTTY功能比 cmd 多,cmd 只不过 比 MinTTY 更适合处理 Windows 的一些接口问题,这个对 Git 用处不大,除此之外 Windows 的默认控制台窗口(cmd)有很多劣势,比如 cmd 具有非常有限的默认历史记录回滚堆栈和糟糕的字体编码等等。
@@ -284,6 +290,7 @@ Fast-forward to the fetched branch. Fail if that is not possible.
 **只能快进快进到获取的分支。**
 
 如果不可能,则失败。
+
 </Callout>
 
 git pull” 是什么意思呢？
@@ -312,7 +319,6 @@ git pull 只是拉取远程分支并与本地分支合并,而 git fetch 只是�
 
 翻译如下：
 
-
 <Callout title="翻译如下：">
 **Git Credential Manager**
 
@@ -321,7 +327,7 @@ See more information about the future of Git Credential Manager here.
 
 **Git 凭证管理**
 
-使用跨平台的 Git  凭证管理。
+使用跨平台的 Git 凭证管理。
 在此处查看有关 Git 凭证管理未来的更多信息。
 
 **None**
@@ -329,6 +335,7 @@ See more information about the future of Git Credential Manager here.
 Do not use a credential helper.
 
 不使用凭证助手。
+
 </Callout>
 
 一共两个选项：
@@ -365,6 +372,7 @@ Please note that existing repositories are unaffected by this setting.
 
 启用符号链接(需要SeCreateSymbolicLink权限)。
 请注意,现有存储库不受此设置的影响。
+
 </Callout>
 
 有两个选项：
@@ -413,9 +421,9 @@ Please note that existing repositories are unaffected by this setting.
 
 `Git GUI`就是Git的图形化工具,如果想用图形化的工具的化,一般不会去用自带的,这边我推荐几个Git的图形化工具,感兴趣的可以自己上网搜索,下载
 
-* sourcetree(开源、免费、功能强大、支持Mac、Windows )
-* tortoisegit(免费、中文界面、只支持Windows)
-* GitHub Desktop(常使用GitHub)
+- sourcetree(开源、免费、功能强大、支持Mac、Windows )
+- tortoisegit(免费、中文界面、只支持Windows)
+- GitHub Desktop(常使用GitHub)
 
 ![Git GUI](assets/20250219_133856_21.png)
 

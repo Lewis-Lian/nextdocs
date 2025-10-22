@@ -47,7 +47,10 @@ export default function Layout({ children }: LayoutProps<'/'>) {
                 <Link href="/docs/sudynotes">指南</Link>
               </NavbarMenuTrigger>
               <NavbarMenuContent className="text-[15px]">
-                <NavbarMenuLink href="/docs/sudynotes" className="md:row-span-2">
+                <NavbarMenuLink
+                  href="/docs/sudynotes"
+                  className="md:row-span-2"
+                >
                   <div className="-mx-3 -mt-3">
                     <Image
                       src={Preview}
@@ -75,7 +78,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
                     Python是一种简单易学、功能强大且语法优雅的编程语言，广泛应用于数据分析、人工智能、网站开发、自动化等多个领域，适合初学者和专业开发者。
                   </p>
                 </NavbarMenuLink>
-                
+
                 <NavbarMenuLink
                   href="/docs/sudynotes/linux"
                   className="lg:col-start-2"

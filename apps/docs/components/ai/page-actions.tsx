@@ -62,8 +62,7 @@ export function LLMCopyButton({
       )}
       onClick={onClick}
     >
-      {checked ? <Check /> : <Copy />}
-      以 Markdown 格式复制
+      {checked ? <Check /> : <Copy />}以 Markdown 格式复制
     </button>
   );
 }
