@@ -6,7 +6,7 @@ export function createMetadata(override: Metadata): Metadata {
     openGraph: {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      url: 'https://fumadocs.dev',
+      url: 'https://wiki.l615.com',
       images: '/banner.png',
       siteName: 'Fumadocs',
       ...override.openGraph,
