@@ -1,0 +1,110 @@
+---
+title: 网络诊断工具常用命令
+description: 网络诊断工具常用命令教程，包含 ping、nslookup、netstat、curl 等工具的使用方法
+---
+
+# 网络诊断工具常用命令
+
+## 1. ping 命令 - 基础连通性测试
+
+### Ping 命令基础用法
+
+```zsh title="bash"
+ping example.com          # 持续发送ICMP请求（默认直到Ctrl+C停止）
+ping -c 4 example.com     # 限制发送次数（如4次）
+ping -i 2 example.com     # 设置发包间隔（2秒）
+ping -s 1000 example.com  # 指定数据包大小（1000字节）
+```
+
+### 高级参数
+
+```zsh title="bash"
+ping -D example.com       # 显示时间戳（Unix格式）
+ping -q -c 10 example.com # 安静模式（只显示统计结果）
+ping -W 3 example.com     # 设置超时时间（3秒）
+```
+
+### 注意事项
+
+- 某些服务器可能禁ping（ICMP屏蔽）
+- 延迟≠带宽，高延迟可能影响TCP连接建立
+- Windows系统默认发送4次包（Linux持续发送）
+
+## 2. nslookup - DNS解析检查
+
+```zsh title="bash"
+nslookup google.com       # 查询域名解析
+```
+
+## 3. netstat - 网络连接状态分析
+
+```zsh title="bash"
+netstat -tuln             # 显示所有监听的端口
+netstat -an               # 显示所有网络连接
+netstat -i                # 显示网络接口统计信息
+netstat -r                # 显示路由表
+```
+
+## 4. curl - HTTP服务诊断
+
+### 基础HTTP诊断
+
+```zsh title="bash"
+curl -I https://example.com      # 仅获取HTTP头信息
+curl -v https://example.com      # 显示详细连接过程
+curl --connect-timeout 5 https://example.com  # 设置连接超时时间
+```
+
+### 性能分析
+
+1. 创建 `curl-format.txt` 文件：
+   ```zsh title="txt"
+   time_namelookup: %{time_namelookup}\n
+   time_connect: %{time_connect}\n
+   time_appconnect: %{time_appconnect}\n
+   time_total: %{time_total}\n
+   ```
+2. 执行测试：
+   ```zsh title="bash"
+   curl -w "@curl-format.txt" -o /dev/null -s https://example.com
+   ```
+
+### 常见问题排查
+
+| 场景                | 命令示例                                     | 说明                     |
+| ------------------- | -------------------------------------------- | ------------------------ |
+| 检查HTTPS证书有效性 | `curl --ssl-reqd https://expired.badssl.com` | 证书错误时会报错         |
+| 跟踪重定向          | `curl -L http://bit.ly/xxx`                  | `-L` 自动跟随301/302跳转 |
+| 模拟特定User-Agent  | `curl -A "Mozilla/5.0" example.com`          | 绕过某些服务器的UA限制   |
+
+## 工具联用场景
+
+### 基础排查链条
+
+```zsh title="bash"
+ping -c 2 example.com && nslookup example.com && curl -I example.com
+```
+
+- 顺序检查：网络连通性 → DNS解析 → HTTP服务状态
+
+### 组合诊断示例
+
+```zsh title="bash"
+ping -c 2 google.com && curl -I google.com
+```
+
+### 快速测试CDN节点
+
+```zsh title="bash"
+curl -x 1.2.3.4:80 -I https://example.com  # 通过指定代理IP测试特定节点
+```
+
+## 注意事项
+
+<Callout title="注意" type="warning">
+
+1. 使用 `-k` 参数可跳过SSL证书验证（仅限测试环境）
+2. 返回 `HTTP/2 200` 表示成功使用HTTP/2协议
+3. 若遇到连接重置，可能是服务器屏蔽了curl的默认UA（尝试添加 `-A "浏览器UA"`）
+
+</Callout>
