@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { type ReactNode, useId } from 'react';
 import { cn } from '@/lib/cn';
+import { Banner } from 'fumadocs-ui/components/banner';
 
 export function Body({
   children,
@@ -13,7 +14,10 @@ export function Body({
 
   return (
     <body className={cn(mode, 'relative flex min-h-screen flex-col')}>
-      {children}
+      <Banner id="gonggao" variant="rainbow">
+        网站正在建设中...
+      </Banner>
+      ;{children}
     </body>
   );
 }

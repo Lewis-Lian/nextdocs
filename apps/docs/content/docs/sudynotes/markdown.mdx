@@ -1,0 +1,297 @@
+---
+title: 如何撰写文档
+description: 使用 Markdown 和 MDX 撰写文档的指南
+icon: CircleQuestionMark
+---
+
+## 介绍
+
+这里简单介绍一下默认的 MDX 语法。
+
+> MDX 并非是唯一支持的格式。事实上，可以使用任何渲染器。
+
+## MDX 语法
+
+MDX 是 Markdown 的超集，支持所有 Markdown 语法，允许你导入自定义组件，并在文档中使用它们。
+甚至可以使用 JS 语法来编写交互式组件。
+
+参考资料：
+
+- [MDX 语法](https://mdxjs.com/docs/what-is-mdx/#mdx-syntax).
+- 还支持 GFM（GitHub Flavored Markdown），请参阅 [GFM 规范](https://github.github.com/gfm).
+
+<Callout title="关于链接">
+  内部链接使用`
+  <Link />
+  `React框架的组件（例如`next/link`）来允许预取并避免硬重新加载。
+  外部链接将获得默认`rel="noreferrer noopener" target="_blank"`属性以确保安全。
+</Callout>
+
+### 常用语法
+
+```mdx tab="标题"
+# 一级标题
+
+## 二级标题
+
+### 三级标题
+
+#### 四级标题
+```
+
+```mdx tab="加粗、斜体、删除线"
+**加粗文本**
+_斜体文本_
+~~删除线文本~~
+```
+
+```mdx tab="列表"
+- 无序列表项 1
+- 无序列表项 2
+  - 嵌套无序列表项
+
+1. 有序列表项 1
+2. 有序列表项 2
+```
+
+```mdx tab="链接和图片"
+[这是一个链接](https://wiki.l615.com/)
+![这是一个图片](https://wiki.l615.com/assets/logo.png)
+或者使用相对路径：
+![这是一个图片](./assets/logo.png)
+```
+
+````python tab="代码块"
+```python
+def hello_world():
+    print("Hello, world!")
+```
+````
+
+```mdx tab="表格"
+| 标题 1 | 标题 2 | 标题 3 |
+| ------ | ------ | ------ |
+| 内容 1 | 内容 2 | 内容 3 |
+| 内容 4 | 内容 5 | 内容 6 |
+```
+
+```mdx tab="分割线"
+---
+```
+
+```mdx tab="引用"
+> 这是一个引用块。
+> 可以包含多行文本。
+```
+
+```mdx tab="内联代码"
+这是一些内联代码：`print("Hello, world!")`
+```
+
+```mdx tab="任务列表"
+- [x] 任务 1
+- [ ] 任务 2
+- [ ] 任务 3
+```
+
+### 页面头部参数
+
+可以在 MDX 文件的开头使用 YAML 语法定义页面的元数据，例如标题、描述和图标：
+
+```yaml
+---
+title: 页面标题
+description: 页面描述
+icon: CircleQuestionMark
+---
+```
+
+### 链接到其他文档
+
+```mdx tab="链接到其他文档"
+[前往 程序设计的语言和分类](../python/1/1-1)
+```
+
+[前往 程序设计的语言和分类](../python/1/1-1)
+
+也可以链接到其他文档的锚点：
+
+```mdx tab="链接到其他文档的锚点"
+[`前往 高级语言`](../python/1/1-1/#高级语言)
+```
+
+[`前往 高级语言`](../python/1/1-1/#高级语言)
+
+### 卡片组块
+
+适用于添加链接的卡片组块。
+
+```mdx title="卡片组块"
+<Cards>
+  <Card
+    title="可链接的卡片示例"
+    href="/docs/sudynotes/"
+    description="返回文档首页"
+  />
+  <Card title="不添加链接的卡片示例" description="了解不同的编程语言及其分类" />
+  <Card icon={<HomeIcon />} href="/" title="首页">
+    当然，也可添加图标。
+  </Card>
+</Cards>
+```
+
+<Cards>
+  <Card
+    title="可链接的卡片示例"
+    href="/docs/sudynotes/"
+    description="返回文档首页"
+  />
+  <Card title="不添加链接的卡片示例" description="了解不同的编程语言及其分类" />
+  <Card icon={<HomeIcon />} href="/" title="首页">
+    当然，也可添加图标。
+  </Card>
+</Cards>
+--- ### 提示块
+
+提示块用于显示信息、成功、警告和错误消息。
+
+**默认提示块为信息类型。**
+
+```mdx tab="信息"
+<Callout title="信息" type="info">
+  这是信息提示块。
+</Callout>
+```
+
+```mdx tab="成功"
+<Callout title="成功" type="success">
+  这是成功提示块。
+</Callout>
+```
+
+```mdx tab="警告"
+<Callout title="警告" type="warning">
+  这是警告提示块。
+</Callout>
+```
+
+```mdx tab="错误"
+<Callout title="错误" type="error">
+  这是错误提示块。
+</Callout>
+```
+
+<Callout title="信息" type="info">
+  这是信息提示块。
+</Callout>
+<Callout title="成功" type="success">
+  这是成功提示块。
+</Callout>
+<Callout title="警告" type="warning">
+  这是警告提示块。
+</Callout>
+<Callout title="错误" type="error">
+  这是错误提示块。
+</Callout>
+--- ### 代码块进阶使用
+
+代码块默认支持语法高亮，可以指定代码语言：
+
+js/python/java/bash/ts/mdx等
+
+````mdx tab="输入"
+```ts
+const a = 'Hello World';
+console.log(a);
+```
+````
+
+```ts tab="输出"
+const a = 'Hello World';
+console.log(a);
+```
+
+#### 代码块行号
+
+可以为代码块添加行号：
+
+````mdx tab="输入"
+```python lineNumbers
+def hello_world():
+    print("lineNumbers为添加行号")
+```
+````
+
+```python twoslash lineNumbers tab="输出"
+def hello_world():
+    print("lineNumbers为添加行号")
+```
+
+当然，也可以设置从特定行号开始：
+
+````mdx tab="输入"
+```python lineNumbers=5
+def hello_world():
+    print("lineNumbers从5开始")
+```
+````
+
+```python twoslash lineNumbers=5 tab="输出"
+def hello_world():
+    print("lineNumbers从5开始")
+```
+
+#### @shikijs/transformers支持
+
+可以使用`@shikijs/transformers`来增强代码块功能，例如添加类型检查、错误提示等。
+
+详细信息可参阅：[shikijs/transformers](https://shiki.style/packages/transformers)。
+
+下面是一个例子：
+
+````md tab="输入"
+```tsx
+// highlight a line
+<div>单行高亮</div> // [\!code highlight]
+
+// highlight a word
+// [\!code word:NextDocs]
+<div>NextDocs</div>
+
+// diff styles
+console.log('提示删除了此行'); // [\!code --]
+console.log('提示添加了此行'); // [\!code ++]
+
+// focus
+return new ResizeObserver(() => {}) // [\!code focus]
+```
+````
+
+```tsx tab="输出"
+// 单行高亮
+<div>单行高亮</div> // [!code highlight]
+
+// 高亮单词
+// [!code word:高亮此文字]
+<div>高亮此文字</div>
+
+// 差异样式:
+console.log('提示删除了此行'); // [!code --]
+console.log('提示添加了此行'); // [!code ++]
+
+// 聚焦此行
+return new ResizeObserver(() => {}) // [!code focus]
+```
+
+#### 选项卡组块
+
+可以添加选项卡组块，使用 ` ```mdx tab="选项卡标题" ``` ` 来添加选项卡。
+
+`````mdx title="选项卡组块"
+````mdx tab="选项卡标题"
+```python
+def hello_world():
+    print("Hello, world!")
+```
+````
+`````
