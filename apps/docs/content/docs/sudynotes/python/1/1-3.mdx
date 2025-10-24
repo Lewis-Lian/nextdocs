@@ -9,19 +9,19 @@ description: 输入和输出的基本用法，包含 print() 和 input() 函数�
 
 用 `print()`在括号中加上字符串，就可以向屏幕上输出指定的文字。比如输出 `'hello, world'`，用代码实现如下：
 
-```zsh title="python"
+```python title="python"
 print('hello, world')
 ```
 
 `print()` 函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出：
 
-```zsh title="python"
+```python title="python"
 print('The quick brown fox', 'jumps over', 'the lazy dog')
 ```
 
 输出结果为
 
-```zsh title="bash"
+```bash title="bash"
 The quick brown fox jumps over the lazy dog
 ```
 
@@ -33,7 +33,7 @@ The quick brown fox jumps over the lazy dog
 
 `print()`也可以打印整数，或者计算结果：
 
-```zsh title="bash"
+```bash title="bash"
 >>> print(300)
 300
 >>> print(100 + 200)
@@ -42,7 +42,7 @@ The quick brown fox jumps over the lazy dog
 
 因此，我们可以把计算 `100 + 200` 的结果打印得更漂亮一点：
 
-```zsh title="python"
+```python title="python"
 >>> print('100 + 200 =', 100 + 200)
 100 + 200 = 300
 ```
@@ -51,18 +51,17 @@ The quick brown fox jumps over the lazy dog
 
 ### 输入
 
-````zsh title="python"
 现在，你已经可以用 `print()`输出你想要的结果了。但是，如果要让用户从电脑输入一些字符怎么办？Python提供了一个 `input()`，可以让用户输入字符串，并存放到一个变量里。比如输入用户的名字：
 
-```zsh title="python"
+```python title="python"
 name=input("输入你的名字：")
-````
+```
 
 当你输入`name=input("输入你的名字：")`并按下回车后，这时，你可以输入任意字符，然后按回车后完成输入。
 
 输入完成后，不会有任何提示，那我们刚才输入的内容到哪去了？答案是存放到`name`变量里了。可以直接输入下方代码查看变量内容：
 
-```zsh title="python"
+```python title="python"
 name=input("输入你的名字：")
 print("你的名字是：", name)
 ```

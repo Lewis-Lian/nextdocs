@@ -287,11 +287,98 @@ return new ResizeObserver(() => {}) // [!code focus]
 
 可以添加选项卡组块，使用 ` ```mdx tab="选项卡标题" ``` ` 来添加选项卡。
 
-`````mdx title="选项卡组块"
-````mdx tab="选项卡标题"
-```python
+````mdx title="选项卡组块"
+```python tab="选项卡标题一"
 def hello_world():
-    print("Hello, world!")
+    print("A")
+```
+
+```python tab="选项卡标题二"
+def hello_world():
+    print("B")
 ```
 ````
-`````
+
+```python tab="选项卡标题一"
+def hello_world():
+    print("A")
+```
+
+```python tab="选项卡标题二"
+def hello_world():
+    print("B")
+```
+
+可配置文件使选项卡中使用MDX语法：
+
+```ts tab="Fumadocs MDX" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+
+export default defineConfig({
+  mdxOptions: {
+    remarkCodeTabOptions: {
+      parseMdx: true, // [!code ++]
+    },
+  },
+});
+```
+
+```ts tab="MDX Compiler"
+import { compile } from '@mdx-js/mdx';
+import { remarkCodeTab } from 'fumadocs-core/mdx-plugins';
+
+await compile('...', {
+  remarkPlugins: [
+    [
+      remarkCodeTab,
+      {
+        parseMdx: true, // [!code ++]
+      },
+    ],
+  ],
+});
+```
+
+<Callout title="提示" type="warning">
+  启用`parseMdx`选项后，选项卡内可以使用MDX语法，但请注意，这可能会影响编译性能。
+</Callout>
+
+````mdx title="选项卡组块使用MDX语法"
+```ts tab="<Building /> 选项卡标题一"
+console.log('A');
+```
+
+```ts tab="<Rocket /> 选项卡标题二"
+console.log('B');
+```
+````
+
+```ts tab="<Building /> 选项卡标题一"
+console.log('A');
+```
+
+```ts tab="<Rocket /> 选项卡标题二"
+console.log('B');
+```
+
+### 引用
+
+可以引用本站内的文件（可以是 Markdown/MDX 文档）。在标签中指定目标文件路径`<include>`（需使用绝对路径）。
+
+```mdx title="引用文档"
+<include>../mdx/page.mdx</include>
+```
+
+### npm 命令
+
+生成不同的包管理器命令
+
+````md tab="输入"
+```npm
+npm run build
+```
+````
+
+```npm tab="输出"
+npm run build
+```
