@@ -35,11 +35,11 @@ export default function DocsPage() {
       </p>
       <div className="mt-4 grid grid-cols-2 gap-4">
         <a
-          href="/docs/studynotes"
+          href="/docs/sudynotes"
           rel="noreferrer noopener"
           className={cn(buttonVariants({ size: 'lg' }))}
         >
-          Github
+          点此开始
         </a>
         <Link
           href="https://github.com/Lewis-Lian/nextdocs"
