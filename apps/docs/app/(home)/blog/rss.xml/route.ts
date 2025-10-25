@@ -4,18 +4,18 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = false;
 
-const baseUrl = 'https://fumadocs.dev';
+const baseUrl = 'https://wiki.l615.com';
 
 export function GET() {
   const feed = new Feed({
-    title: 'Fumadocs Blog',
+    title: 'NextDocs Blog',
     id: `${baseUrl}/blog`,
     link: `${baseUrl}/blog`,
     language: 'en',
 
     image: `${baseUrl}/banner.png`,
     favicon: `${baseUrl}/icon.png`,
-    copyright: 'All rights reserved 2025, Fuma Nama',
+    copyright: 'All rights reserved 2025, Lewis-Lian',
   });
 
   for (const page of blog.getPages().sort((a, b) => {

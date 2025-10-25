@@ -26,18 +26,18 @@ export default function Page() {
         className="h-[300px] p-8 md:h-[400px] md:p-12"
         style={{
           backgroundImage: [
-            'radial-gradient(circle at 70% 10%, rgba(255,50,100,0.5), transparent)',
-            'radial-gradient(circle at 0% 80%, rgba(190,0,255,0.5), transparent)',
-            'radial-gradient(circle at 50% 50%, rgba(50,50,255,0.3), transparent)',
+            'radial-gradient(circle at 70% 10%, rgba(26, 0, 119, 0.5), transparent)',
+            'radial-gradient(circle at 0% 80%, rgba(0, 183, 255, 0.93), transparent)',
+            'radial-gradient(circle at 50% 50%, rgba(0, 0, 142, 0.3), transparent)',
             `url("data:image/svg+xml,${encodeURIComponent(svg)}")`,
           ].join(', '),
         }}
       >
         <h1 className="mb-4 border-b-4 border-fd-foreground pb-2 text-4xl font-bold md:text-5xl">
-          Fumadocs Blog
+          博客与更新
         </h1>
         <p className="text-sm md:text-base">
-          Light and gorgeous. like the moon
+          记录最新的动态、更新和公告，了解项目的最新进展。
         </p>
       </div>
       <div className="grid grid-cols-1 border md:grid-cols-3 lg:grid-cols-4">

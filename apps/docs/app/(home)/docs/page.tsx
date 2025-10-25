@@ -10,7 +10,7 @@ export default function DocsPage() {
     <main className="container flex flex-col items-center py-16 text-center z-2">
       <div className="absolute inset-0 z-[-1] overflow-hidden duration-1000 animate-in fade-in [perspective:2000px]">
         <div
-          className="absolute bottom-[20%] left-1/2 size-[1200px] origin-bottom bg-fd-primary/30 opacity-30"
+          className="absolute bottom-[30%] left-1/2 size-[1200px] origin-bottom bg-fd-primary/30 opacity-30"
           style={{
             transform: 'rotateX(75deg) translate(-50%, 400px)',
             backgroundImage:
@@ -28,46 +28,27 @@ export default function DocsPage() {
         />
       </div>
       <h1 className="mb-4 text-4xl font-semibold md:text-5xl">
-        Getting Started
+        Next Docs
       </h1>
       <p className="text-fd-muted-foreground">
-        You can start with Fumadocs, or just use the core library.
+        该文档记录了我的学习内容，工作笔记以及一些项目的使用说明。希望我的分享能对你有所帮助！
       </p>
       <div className="mt-4 grid grid-cols-2 gap-4">
         <a
-          href="https://github.com/Lewis-Lian/nextdocs"
+          href="/docs/studynotes"
           rel="noreferrer noopener"
           className={cn(buttonVariants({ size: 'lg' }))}
         >
           Github
         </a>
         <Link
-          href="/showcase"
+          href="https://github.com/Lewis-Lian/nextdocs"
           className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
         >
-          Showcase
+          Github
         </Link>
       </div>
-      <div className="mt-16 grid grid-cols-1 gap-4 text-left md:grid-cols-2">
-        <Item href="/docs/ui">
-          <Icon>
-            <Building2 className="size-full" />
-          </Icon>
-          <h2 className="mb-2 text-lg font-semibold">Fumadocs</h2>
-          <p className="text-sm text-fd-muted-foreground">
-            The full-powered documentation framework with an excellent UI.
-          </p>
-        </Item>
-        <Item href="/docs/headless">
-          <Icon>
-            <LibraryIcon className="size-full" />
-          </Icon>
-          <h2 className="mb-2 text-lg font-semibold">Fumadocs Core</h2>
-          <p className="text-sm text-fd-muted-foreground">
-            The core library of Fumadocs.
-          </p>
-        </Item>
-      </div>
+      
     </main>
   );
 }

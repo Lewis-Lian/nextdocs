@@ -1,15 +1,15 @@
 {
-  "name": "fumapress",
-  "version": "0.0.3",
-  "description": "The minimal setup for Fumadocs",
+  "name": "nextdocs",
+  "version": "0.0.1",
+  "description": "The minimal setup for nextdocs",
   "keywords": [
-    "Fumadocs",
+    "nextdocs",
     "Docs"
   ],
-  "homepage": "https://fumadocs.dev",
-  "repository": "github:fuma-nama/fumadocs",
+  "homepage": "https://wiki.l615.com",
+  "repository": "github:Lewis/nextdocs",
   "license": "MIT",
-  "author": "Fuma Nama",
+  "author": "Lewis-Lian",
   "type": "module",
   "files": [
     "dist/*"
