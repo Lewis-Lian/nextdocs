@@ -31,11 +31,6 @@ export default function Layout({ children }: LayoutProps<'/'>) {
               url: '/docs/sudynotes',
               icon: <Book />,
             },
-            {
-              text: '博客',
-              url: '/blog',
-              icon: <ComponentIcon />,
-            },
           ],
         },
         {

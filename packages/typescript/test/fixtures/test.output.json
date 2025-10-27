@@ -94,11 +94,11 @@
         "tags": [
           {
             "name": "example",
-            "text": "```js\r\nconsole.log(\"Hello World\")\r\n```"
+            "text": "```js\nconsole.log(\"Hello World\")\n```"
           },
           {
             "name": "remarks",
-            "text": "`timestamp`\r\nReturned by API"
+            "text": "`timestamp`\nReturned by API"
           }
         ],
         "type": "number",
